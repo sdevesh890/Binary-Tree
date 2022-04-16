@@ -1,0 +1,78 @@
+import java.util.Scanner;
+
+public class Tree
+{
+    static Scanner sc= null;
+     static class Node
+    {
+        int data;
+        Node left;
+        Node right;
+        Node(int d)
+        {
+            data = d;
+            left = null;
+            right = null;
+        }
+    }
+    static Node createTree()
+    {
+        Node root = null;
+        System.out.println("Enter the data");
+        int data = sc.nextInt();
+
+        if(data==-1)
+        {
+            return null;
+        }
+        root = new Node(data);
+        System.out.println("Enter left for "+data);
+        root.left = createTree();
+
+        System.out.println("Enter right fof "+data);
+        root.right = createTree();
+
+        return root;
+    }
+    //Inordertraversal
+   static void inordertraversal(Node root)
+    {
+        if(root==null) return;
+
+        inordertraversal(root.left);
+        System.out.print(root.data+" ");
+        inordertraversal(root.right);
+
+    }
+    //preordertraversal
+    static void preordertraversal(Node root)
+    {
+        if(root==null) return;
+
+        System.out.print(root.data+" ");
+        inordertraversal(root.left);
+        inordertraversal(root.right);
+
+    }
+    //lastordertraversal
+    static void lastordertraversal(Node root)
+    {
+        if(root==null) return;
+
+        inordertraversal(root.left);
+        inordertraversal(root.right);
+        System.out.print(root.data+" ");
+    }
+    public static void main(String args[])
+    {
+          sc = new Scanner(System.in);
+          Node root = createTree();
+          Node root = createTree();
+
+          inordertraversal(root);
+          System.out.println();
+          preordertraversal(root);
+          System.out.println();
+          lastordertraversal(root);
+    }
+}
